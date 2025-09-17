@@ -1,0 +1,10 @@
+package lib_spring_data.study_redis.repository
+
+import lib_spring_data.study_redis.model.User
+import org.springframework.data.repository.CrudRepository
+
+interface UserRedisRepository : CrudRepository<User, String> {
+    fun findByEmail(email: String): User?
+    fun findByName(name: String): List<User>
+    fun findByAgeGreaterThan(age: Int): List<User>
+}
