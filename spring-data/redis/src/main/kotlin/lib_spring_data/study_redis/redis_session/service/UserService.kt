@@ -1,10 +1,10 @@
-package lib_spring_data.study_redis.service
+package lib_spring_data.study_redis.redis_session.service
 
-import lib_spring_data.study_redis.dto.CreateUserRequest
-import lib_spring_data.study_redis.dto.UserResponse
-import lib_spring_data.study_redis.model.User
-import lib_spring_data.study_redis.repository.CustomUserRepository
-import lib_spring_data.study_redis.repository.UserRedisRepository
+import lib_spring_data.study_redis.redis_session.dto.CreateUserRequest
+import lib_spring_data.study_redis.redis_session.dto.UserResponse
+import lib_spring_data.study_redis.redis_session.model.User
+import lib_spring_data.study_redis.redis_session.repository.CustomUserRepository
+import lib_spring_data.study_redis.redis_session.repository.UserRedisRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
