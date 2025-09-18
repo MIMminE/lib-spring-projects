@@ -1,8 +1,8 @@
-package lib_spring_data.study_redis.redis_session.controller
+package lib_spring_data.study_redis.redis_publish.controller
 
-import lib_spring_data.study_redis.redis_session.dto.CreateUserRequest
-import lib_spring_data.study_redis.redis_session.dto.UserResponse
-import lib_spring_data.study_redis.redis_session.service.UserService
+import lib_spring_data.study_redis.redis_publish.dto.CreateUserRequest
+import lib_spring_data.study_redis.redis_publish.dto.UserResponse
+import lib_spring_data.study_redis.redis_publish.service.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

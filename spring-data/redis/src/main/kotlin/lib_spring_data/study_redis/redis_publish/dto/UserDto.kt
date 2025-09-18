@@ -1,6 +1,6 @@
-package lib_spring_data.study_redis.redis_session.dto
+package lib_spring_data.study_redis.redis_publish.dto
 
-import lib_spring_data.study_redis.redis_session.model.User
+import lib_spring_data.study_redis.redis_publish.model.User
 
 /**
  *  실무적인 관점에서 하나의 DTO 파일에 여러개의 DTO 클래스를 두는 것은 상황에 따라 유동적으로 사용하는 것을 권장한다.

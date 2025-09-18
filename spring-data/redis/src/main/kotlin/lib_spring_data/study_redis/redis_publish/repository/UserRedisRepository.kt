@@ -1,6 +1,6 @@
-package lib_spring_data.study_redis.redis_session.repository
+package lib_spring_data.study_redis.redis_publish.repository
 
-import lib_spring_data.study_redis.redis_session.model.User
+import lib_spring_data.study_redis.redis_publish.model.User
 import org.springframework.data.repository.CrudRepository
 
 interface UserRedisRepository : CrudRepository<User, String> {

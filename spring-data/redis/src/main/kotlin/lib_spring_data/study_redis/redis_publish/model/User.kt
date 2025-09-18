@@ -1,4 +1,4 @@
-package lib_spring_data.study_redis.redis_session.model
+package lib_spring_data.study_redis.redis_publish.model
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.redis.core.RedisHash

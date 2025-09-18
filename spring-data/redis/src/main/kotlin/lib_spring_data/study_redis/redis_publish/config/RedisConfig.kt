@@ -1,4 +1,4 @@
-package lib_spring_data.study_redis.redis_session.config
+package lib_spring_data.study_redis.redis_publish.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
