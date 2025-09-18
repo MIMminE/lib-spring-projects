@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket 클라이언트</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #log { border: 1px solid #ccc; height: 300px; overflow-y: scroll; padding: 10px; background: #f9f9f9; }
+        button { margin: 5px; padding: 10px; }
+        #messageInput, #roomInput { width: 300px; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h2>WebSocket 클라이언트 테스트</h2>
+    <div>
+        <input type="text" id="roomInput" placeholder="방 번호 입력">
+        <button onclick="connect()">연결</button>
+        <button onclick="disconnect()">해제</button>
+        <input type="text" id="messageInput" placeholder="메시지 입력">
+        <button onclick="sendMessage()">전송</button>
+    </div>
+    <div id="log"></div>
+
+    <script>
+        let socket = null;
+
+        function connect() {
+            const roomInput = document.getElementById('roomInput');
+            const roomNumber = roomInput.value.trim();
+
+            if (!roomNumber) {
+                log('방 번호를 입력하세요.');
+                return;
+            }
+
+            if (socket) {
+                log('이미 연결되어 있습니다.');
+                return;
+            }
+
+            try {
+                socket = new WebSocket('ws://localhost:8080/chat');
+
+                socket.onopen = () => {
+                    log('🟢 WebSocket 연결 성공');
+                    // 연결 후 방 번호 전송
+                    const joinMessage = {
+                        type: 'JOIN',
+                        room_number: roomNumber
+                    };
+                    socket.send(JSON.stringify(joinMessage));
+                };
+
+                socket.onmessage = (event) => {
+                    log('📥 수신: ' + event.data);
+                };
+
+                socket.onclose = () => {
+                    log('🔴 WebSocket 연결 해제');
+                    socket = null;
+                };
+
+                socket.onerror = (error) => {
+                    log('❌ WebSocket 에러 발생');
+                    console.error('WebSocket error:', error);
+                };
+            } catch (exception) {
+                log('❌ WebSocket 연결 시도 중 예외 발생');
+                console.error('Exception during WebSocket connection:', exception);
+            }
+        }
+
+        function disconnect() {
+            if (socket) {
+                socket.close();
+            } else {
+                log('연결되어 있지 않습니다.');
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            if (socket && input.value) {
+                const message = {
+                    type: 'CHAT',
+                    content: input.value
+                };
+                socket.send(JSON.stringify(message));
+                log('📤 전송: ' + input.value);
+                input.value = '';
+            }
+        }
+
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            const time = new Date().toLocaleTimeString('ko-KR');
+            logDiv.innerHTML += `<div>[${time}] ${message}</div>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+    </script>
+</body>
+</html>
