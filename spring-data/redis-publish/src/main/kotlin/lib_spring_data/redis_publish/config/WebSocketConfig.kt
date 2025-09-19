@@ -1,6 +1,7 @@
 package lib_spring_data.redis_publish.config
 
 import lib_spring_data.redis_publish.socket.ChatWebSocketHandler
+import lib_spring_data.redis_publish.socket.v1.ChatWebSocketNormalHandler
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.socket.config.annotation.EnableWebSocket
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer

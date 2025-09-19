@@ -1,11 +1,9 @@
-package lib_spring_data.redis_publish.socket
+package lib_spring_data.redis_publish.socket.v1
 
-import org.springframework.stereotype.Component
 import org.springframework.web.socket.TextMessage
 import org.springframework.web.socket.WebSocketSession
 import java.util.concurrent.ConcurrentHashMap
 
-@Component
 class ChatRoomManager(
     private val rooms: HashMap<Int, MutableList<WebSocketSession>> = HashMap(),
     private val sessionToRoomNumber: ConcurrentHashMap<String, Int> = ConcurrentHashMap()
@@ -25,6 +23,4 @@ class ChatRoomManager(
             }
         }
     }
-
 }
-
