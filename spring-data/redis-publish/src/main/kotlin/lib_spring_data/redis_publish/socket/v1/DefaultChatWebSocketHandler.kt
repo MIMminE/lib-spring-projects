@@ -1,6 +1,6 @@
 package lib_spring_data.redis_publish.socket.v1
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import lib_spring_data.redis_publish.socket.ChatRoomManager
 import lib_spring_data.redis_publish.socket.ChatWebSocketHandler
 import org.springframework.web.socket.CloseStatus
 import org.springframework.web.socket.TextMessage
@@ -8,10 +8,9 @@ import org.springframework.web.socket.WebSocketSession
 import java.util.concurrent.ConcurrentHashMap
 
 class DefaultChatWebSocketHandler(
-    private val chatRoomManager: DefaultChatRoomManager
+    private val chatRoomManager: ChatRoomManager
 ) : ChatWebSocketHandler() {
 
-    private val objectMapper = jacksonObjectMapper()
     private val sessions = ConcurrentHashMap<String, WebSocketSession>()
 
     override fun afterConnectionEstablished(session: WebSocketSession) {

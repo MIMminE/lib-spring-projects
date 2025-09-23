@@ -1,15 +1,13 @@
 package lib_spring_data.redis_publish.socket.v2
 
-import com.fasterxml.jackson.databind.ObjectMapper
+import lib_spring_data.redis_publish.socket.ChatRoomManager
 import lib_spring_data.redis_publish.socket.ChatWebSocketHandler
 import org.springframework.web.socket.CloseStatus
 import org.springframework.web.socket.TextMessage
 import org.springframework.web.socket.WebSocketSession
 
 class RedisChatWebSocketHandler(
-    private val redisChatRoomManager: RedisChatRoomManager,
-    private val objectMapper: ObjectMapper
-
+    private val redisChatRoomManager: ChatRoomManager
 ) : ChatWebSocketHandler() {
 
     override fun afterConnectionEstablished(session: WebSocketSession) {

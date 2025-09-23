@@ -7,16 +7,16 @@ import org.springframework.web.socket.WebSocketSession
 import java.util.concurrent.ConcurrentHashMap
 
 class DefaultChatRoomManager(
+    private val messageHandler: MessageHandler,
     private val rooms: HashMap<String, MutableList<WebSocketSession>> = HashMap(),
-    private val sessionToRoomNumber: ConcurrentHashMap<String, String> = ConcurrentHashMap(),
-    private val messageHandler: MessageHandler
+    private val sessionToRoomNumber: ConcurrentHashMap<String, String> = ConcurrentHashMap()
 ) : ChatRoomManager {
 
     override fun joinRoom(roomNumber: String, session: WebSocketSession) {
         rooms.getOrPut(roomNumber) { mutableListOf() }.add(session)
         sessionToRoomNumber[session.id] = roomNumber
+        messageHandler.sendWelcomeMessage(session)
     }
-
 
     override fun sendMessage(session: WebSocketSession, message: TextMessage) {
         sessionToRoomNumber[session.id]?.let { roomNumber ->

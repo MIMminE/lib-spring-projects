@@ -39,17 +39,7 @@
             }
 
             try {
-                const socket = new WebSocket(`ws://localhost:8080/chat?roomId=${roomNumber}`);
-
-<!--                socket.onopen = () => {-->
-<!--                    log('🟢 WebSocket 연결 성공');-->
-<!--                    // 연결 후 방 번호 전송-->
-<!--                    const joinMessage = {-->
-<!--                        type: 'JOIN',-->
-<!--                        room_number: roomNumber-->
-<!--                    };-->
-<!--                    socket.send(JSON.stringify(joinMessage));-->
-<!--                };-->
+                socket = new WebSocket(`ws://localhost:8080/chat?roomId=${roomNumber}`);
 
                 socket.onmessage = (event) => {
                     log('📥 수신: ' + event.data);
